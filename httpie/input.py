@@ -203,7 +203,7 @@ class Parser(argparse.ArgumentParser):
         except ParseError as e:
             if args.traceback:
                 raise
-            self.error(e.message)
+            self.error(str(e))
 
         if args.files and not args.form:
             # `http url @/path/to/file`
