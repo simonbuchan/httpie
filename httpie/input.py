@@ -300,14 +300,17 @@ class KeyValueArgType(object):
             """
             tokens = ['']
             esc = False
+            filename = False
             for c in s:
                 if esc:
                     tokens.extend([Escaped(c), ''])
                     esc = False
                 else:
-                    if c == '\\':
+                    if c == '\\' and not filename:
                         esc = True
                     else:
+                        if c == SEP_FILES:
+                            filename = True
                         tokens[-1] += c
             return tokens
 
